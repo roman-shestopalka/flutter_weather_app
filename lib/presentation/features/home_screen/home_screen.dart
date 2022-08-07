@@ -1,57 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/presentation/common/app_colors.dart';
-import 'package:weather_app/presentation/common/app_text_styles.dart';
-import 'package:weather_app/presentation/common/weather_icons.dart';
+import 'package:weather_app/presentation/common/ui/main_weather_info_widget.dart';
+import 'package:weather_app/presentation/common/ui/more_info_wedget.dart';
 import 'package:weather_app/presentation/features/city_screen/city_screen.dart';
 
-class HomeScreenPage extends StatefulWidget {
-  const HomeScreenPage({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
-  @override
-  State<HomeScreenPage> createState() => _HomeScreenPageState();
-}
+  final Weather? data;
 
-class _HomeScreenPageState extends State<HomeScreenPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                const CaptionsWidget(
-                  title: 'City Name',
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Container(
-                    width: 380,
-                    height: 240,
-                    decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xffab2bc1), Color(0xff0a6cba)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 50,
-                              blurStyle: BlurStyle.normal)
-                        ],
-                        borderRadius: BorderRadius.circular(30)),
-                    child: WeatherIcons.cloud,
-                  ),
-                )
-              ],
-            )
-          ],
+    return Column(
+      children: [
+        CaptionsWidget(
+          title: "${data!.cityName}",
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20, bottom: 20),
+          child: MainWeatherInfoWidget(data: data),
+        ),
+        MoreInfoWidget(
+          data: data,
+        )
+      ],
+    );
+  }
+}
+
+class WeatherInfo extends StatelessWidget {
+  final String text;
+  final double fontSize;
+  final dynamic fontWeight;
+  const WeatherInfo({
+    required this.text,
+    required this.fontSize,
+    required this.fontWeight,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text, // here will be correct weather status
+      style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: Colors.white), // convert to constant comming soon!!!
     );
   }
 }
@@ -67,26 +66,30 @@ class CaptionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        backgroundColor: Colors.transparent,
         title: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        TextButton(
-            style: const ButtonStyle(),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const CityScreen())));
-            },
-            child: const Icon(
-              Icons.location_pin,
-              color: AppColors.mainColor,
-            ))
-      ],
-    ));
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Text(
+                title,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            TextButton(
+                style: const ButtonStyle(),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const CityScreen())));
+                },
+                child: const Icon(
+                  Icons.location_pin,
+                  color: AppColors.mainColor,
+                ))
+          ],
+        ));
   }
 }

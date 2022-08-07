@@ -1,5 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:weather_app/presentation/features/home_screen/home_screen.dart';
+import 'package:weather_app/presentation/features/main_screen/main_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

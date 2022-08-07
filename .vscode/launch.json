@@ -4,29 +4,11 @@
     // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
-            "name": "weather_app",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "weather_app (profile mode)",
+            "name": "Iphone 13 Pro Max",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "weather_app (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "ios",
-            "request": "launch",
             "deviceId": "36ECFCE8-ED47-49D8-900D-5B74BDAE559C",
-            "type": "dart"
-        }
+        },
     ]
 }
