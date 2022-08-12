@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/presentation/common/app_colors.dart';
+import 'package:weather_app/presentation/common/ui/forecast_list_widget.dart';
 import 'package:weather_app/presentation/common/ui/main_weather_info_widget.dart';
 import 'package:weather_app/presentation/common/ui/more_info_wedget.dart';
 import 'package:weather_app/presentation/features/city_screen/city_screen.dart';
+
+final dayInfo = DateTime.now();
+final dateFormat = DateFormat('EEEE, d MMM').format(dayInfo);
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -26,31 +31,11 @@ class HomeScreen extends StatelessWidget {
         ),
         MoreInfoWidget(
           data: data,
+        ),
+        ForecastListWidget(
+          data: data,
         )
       ],
-    );
-  }
-}
-
-class WeatherInfo extends StatelessWidget {
-  final String text;
-  final double fontSize;
-  final dynamic fontWeight;
-  const WeatherInfo({
-    required this.text,
-    required this.fontSize,
-    required this.fontWeight,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text, // here will be correct weather status
-      style: TextStyle(
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          color: Colors.white), // convert to constant comming soon!!!
     );
   }
 }
@@ -77,18 +62,22 @@ class CaptionsWidget extends StatelessWidget {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            TextButton(
-                style: const ButtonStyle(),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => const CityScreen())));
-                },
-                child: const Icon(
-                  Icons.location_pin,
-                  color: AppColors.mainColor,
-                ))
+            Text(
+              dateFormat,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            ),
+            IconButton(
+              icon: const Icon(
+                Icons.tune_outlined,
+                color: AppColors.mainColor,
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const CityScreen())));
+              },
+            )
           ],
         ));
   }

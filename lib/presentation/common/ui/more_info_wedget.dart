@@ -11,7 +11,7 @@ class MoreInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContainerCardWidget(
         width: 380,
-        height: 200,
+        height: 230,
         paddingIn: 15,
         widgetDecor: BoxDecoration(boxShadow: const [
           BoxShadow(
@@ -26,25 +26,23 @@ class MoreInfoWidget extends StatelessWidget {
                   "Details",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
-                    width: 45,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.refresh,
-                      ),
+                TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "See more",
+                      style: TextStyle(fontSize: 17),
                     ))
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 15, top: 10),
+              padding: const EdgeInsets.only(bottom: 15, top: 25),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   DetailsItem(
-                    icon: const Icon(Icons.arrow_upward_outlined),
-                    title: "Max Temp",
-                    details: "${data?.maxTemp?.toStringAsFixed(1)}°",
+                    icon: const Icon(Icons.speed_outlined),
+                    title: "UV     ",
+                    details: "${data?.uv?.toStringAsFixed(1)}",
                   ),
                   DetailsItem(
                       icon: const Icon(
@@ -53,9 +51,9 @@ class MoreInfoWidget extends StatelessWidget {
                       title: "Humidity",
                       details: '${data?.humidity}%'),
                   DetailsItem(
-                      icon: const Icon(Icons.air_outlined),
+                      icon: const Icon(Icons.wind_power_outlined),
                       title: "Wind Speed",
-                      details: "${data?.wind} m/s")
+                      details: "${data?.wind} km/h")
                 ],
               ),
             ),
@@ -63,20 +61,19 @@ class MoreInfoWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DetailsItem(
-                  icon: const Icon(Icons.arrow_downward_outlined),
-                  title: "Min Temp",
-                  details: "${data?.minTemp?.toStringAsFixed(1)}°",
-                ),
+                    icon: const Icon(Icons.cloud_outlined),
+                    title: "Cloud",
+                    details: "${data?.cloud} %"),
                 DetailsItem(
                     icon: const Icon(
-                      Icons.water_drop_outlined,
+                      Icons.visibility,
                     ),
-                    title: "Pressure",
-                    details: "${data?.pressure}hPa"),
+                    title: "Visibility",
+                    details: "${data?.visibility} km"),
                 DetailsItem(
                     icon: const Icon(Icons.air_outlined),
-                    title: "Wind Speed",
-                    details: "${data?.wind} m/s"),
+                    title: "Wind Direct",
+                    details: "${data?.windDir}"),
               ],
             )
           ],

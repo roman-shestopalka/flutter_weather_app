@@ -40,27 +40,49 @@ class MainWeatherInfoWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               WeatherInfo(
-                text: '${data!.temp?.toStringAsFixed(1)}°',
-                fontSize: 54,
+                text: '${data!.temp?.toStringAsFixed(0)}°',
+                fontSize: 78,
                 fontWeight: FontWeight.bold,
               ), // gradus text
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 15),
+                padding: const EdgeInsets.only(top: 10, bottom: 5),
                 child: WeatherInfo(
-                  text: """Feels Like:
-${data!.feelsLike?.toStringAsFixed(1)}°""",
-                  fontSize: 28,
+                  text: "Feels Like: ${data!.feelsLike?.toStringAsFixed(1)}°",
+                  fontSize: 18,
                   fontWeight: FontWeight.w400,
                 ),
               ),
               WeatherInfo(
-                  text: "${data!.description}",
+                  text: "${data?.date}",
                   fontSize: 20,
-                  fontWeight: FontWeight.w200)
+                  fontWeight: FontWeight.w300)
             ],
           )
         ],
       ),
+    );
+  }
+}
+
+class WeatherInfo extends StatelessWidget {
+  final String text;
+  final double fontSize;
+  final dynamic fontWeight;
+  const WeatherInfo({
+    required this.text,
+    required this.fontSize,
+    required this.fontWeight,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text, // here will be correct weather status
+      style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: Colors.white), // convert to constant comming soon!!!
     );
   }
 }
