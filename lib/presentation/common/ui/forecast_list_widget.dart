@@ -3,7 +3,7 @@ import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/presentation/common/ui/container_card_widget.dart';
 
 class ForecastListWidget extends StatelessWidget {
-  ForecastListWidget({Key? key, this.data}) : super(key: key);
+  const ForecastListWidget({Key? key, this.data}) : super(key: key);
 
   final Weather? data;
 
@@ -23,6 +23,7 @@ class ForecastListWidget extends StatelessWidget {
               weather: "${data?.maxTemp?.toStringAsFixed(0)}°",
               humidity: "${data?.avghumidity?.toStringAsFixed(0)}%",
               paddingLeft: 25,
+              avghumidity: data!.avghumidity,
             ),
             ForecastContainerWidget(
               data: data,
@@ -30,6 +31,7 @@ class ForecastListWidget extends StatelessWidget {
               weather: "${data?.maxTemp1?.toStringAsFixed(0)}°",
               humidity: "${data?.avghumidity1?.toStringAsFixed(0)}%",
               paddingLeft: 0,
+              avghumidity: data!.avghumidity1,
             ),
             ForecastContainerWidget(
               data: data,
@@ -37,6 +39,7 @@ class ForecastListWidget extends StatelessWidget {
               weather: "${data?.maxTemp2?.toStringAsFixed(0)}°",
               humidity: "${data?.avghumidity2?.toStringAsFixed(0)}%",
               paddingLeft: 0,
+              avghumidity: data!.avghumidity2,
             ),
             ForecastContainerWidget(
               data: data,
@@ -44,6 +47,7 @@ class ForecastListWidget extends StatelessWidget {
               weather: "${data?.maxTemp3?.toStringAsFixed(0)}°",
               humidity: "${data?.avghumidity3?.toStringAsFixed(0)}%",
               paddingLeft: 0,
+              avghumidity: data!.avghumidity3,
             )
           ],
         ),
@@ -53,10 +57,12 @@ class ForecastListWidget extends StatelessWidget {
 }
 
 class ForecastContainerWidget extends StatelessWidget {
+  final Weather? data;
   final String date;
   final String weather;
   final String humidity;
   final double paddingLeft;
+  final double? avghumidity;
 
   const ForecastContainerWidget({
     Key? key,
@@ -65,12 +71,20 @@ class ForecastContainerWidget extends StatelessWidget {
     required this.date,
     required this.weather,
     required this.humidity,
+    this.avghumidity,
   }) : super(key: key);
-
-  final Weather? data;
 
   @override
   Widget build(BuildContext context) {
+    Color getColors() {
+      if (avghumidity! < 60) {
+        return Colors.green;
+      } else if (avghumidity! < 80) {
+        return Colors.orange;
+      }
+      return Colors.red;
+    }
+
     return Padding(
       padding: EdgeInsets.only(right: 15, left: paddingLeft),
       child: ContainerCardWidget(
@@ -104,7 +118,7 @@ class ForecastContainerWidget extends StatelessWidget {
               padding:
                   const EdgeInsets.only(top: 2, right: 9, bottom: 2, left: 9),
               decoration: BoxDecoration(
-                color: Colors.greenAccent,
+                color: getColors(),
                 borderRadius: BorderRadius.circular(30),
               ),
               child: ForecastWidgetItem(
@@ -128,7 +142,7 @@ class ForecastWidgetItem extends StatelessWidget {
   final FontWeight fontWeight;
   final Color? color;
 
-  ForecastWidgetItem(
+  const ForecastWidgetItem(
       {Key? key,
       this.color,
       required this.fontWeight,
