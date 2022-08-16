@@ -11,45 +11,47 @@ class ForecastListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
-      child: SizedBox(
-        height: 200,
-        width: 500,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: [
-            ForecastContainerWidget(
-              data: data,
-              date: "${data?.date?.substring(5)}",
-              weather: "${data?.maxTemp?.toStringAsFixed(0)}°",
-              humidity: "${data?.avghumidity?.toStringAsFixed(0)}%",
-              paddingLeft: 25,
-              avghumidity: data!.avghumidity,
-            ),
-            ForecastContainerWidget(
-              data: data,
-              date: "${data?.date1?.substring(5)}",
-              weather: "${data?.maxTemp1?.toStringAsFixed(0)}°",
-              humidity: "${data?.avghumidity1?.toStringAsFixed(0)}%",
-              paddingLeft: 0,
-              avghumidity: data!.avghumidity1,
-            ),
-            ForecastContainerWidget(
-              data: data,
-              date: "${data?.date2?.substring(5)}",
-              weather: "${data?.maxTemp2?.toStringAsFixed(0)}°",
-              humidity: "${data?.avghumidity2?.toStringAsFixed(0)}%",
-              paddingLeft: 0,
-              avghumidity: data!.avghumidity2,
-            ),
-            ForecastContainerWidget(
-              data: data,
-              date: "${data?.date3?.substring(5)}",
-              weather: "${data?.maxTemp3?.toStringAsFixed(0)}°",
-              humidity: "${data?.avghumidity3?.toStringAsFixed(0)}%",
-              paddingLeft: 0,
-              avghumidity: data!.avghumidity3,
-            )
-          ],
+      child: Expanded(
+        child: SizedBox(
+          width: 500,
+          height: 180,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              ForecastContainerWidget(
+                data: data,
+                date: "${data?.date?.substring(5)}",
+                weather: "${data?.maxTemp?.toStringAsFixed(0)}°",
+                humidity: "${data?.avghumidity?.toStringAsFixed(0)}%",
+                paddingLeft: 25,
+                avghumidity: data!.avghumidity,
+              ),
+              ForecastContainerWidget(
+                data: data,
+                date: "${data?.date1?.substring(5)}",
+                weather: "${data?.maxTemp1?.toStringAsFixed(0)}°",
+                humidity: "${data?.avghumidity1?.toStringAsFixed(0)}%",
+                paddingLeft: 0,
+                avghumidity: data!.avghumidity1,
+              ),
+              ForecastContainerWidget(
+                data: data,
+                date: "${data?.date2?.substring(5)}",
+                weather: "${data?.maxTemp2?.toStringAsFixed(0)}°",
+                humidity: "${data?.avghumidity2?.toStringAsFixed(0)}%",
+                paddingLeft: 0,
+                avghumidity: data!.avghumidity2,
+              ),
+              ForecastContainerWidget(
+                data: data,
+                date: "${data?.date3?.substring(5)}",
+                weather: "${data?.maxTemp3?.toStringAsFixed(0)}°",
+                humidity: "${data?.avghumidity3?.toStringAsFixed(0)}%",
+                paddingLeft: 0,
+                avghumidity: data!.avghumidity3,
+              )
+            ],
+          ),
         ),
       ),
     );
