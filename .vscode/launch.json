@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Iphone 13 Pro Max",
+            "name": "Iphone 13 Pro",
             "request": "launch",
             "type": "dart",
             "deviceId": "75F03C7F-7C30-48B3-9401-4335A71BAA4B",

@@ -14,8 +14,8 @@ class MainWeatherInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ContainerCardWidget(
-      height: 280,
-      width: 380,
+      height: 250,
+      width: 350,
       paddingIn: 15,
       widgetDecor: BoxDecoration(
           gradient: const LinearGradient(
@@ -33,7 +33,7 @@ class MainWeatherInfoWidget extends StatelessWidget {
         children: [
           const Icon(
             Icons.sunny,
-            size: 190,
+            size: 150,
             color: Colors.yellow,
           ),
           Column(

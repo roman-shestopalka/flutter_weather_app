@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
           title: "${data!.cityName}",
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 20),
+          padding: const EdgeInsets.only(bottom: 15),
           child: MainWeatherInfoWidget(data: data),
         ),
         MoreInfoWidget(
@@ -59,12 +59,13 @@ class CaptionsWidget extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15),
               child: Text(
                 title,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
             Text(
               dateFormat,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             IconButton(
               icon: const Icon(

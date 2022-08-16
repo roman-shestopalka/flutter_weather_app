@@ -10,8 +10,8 @@ class MoreInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ContainerCardWidget(
-        width: 380,
-        height: 230,
+        width: 350,
+        height: 200,
         paddingIn: 15,
         widgetDecor: BoxDecoration(boxShadow: const [
           BoxShadow(
@@ -24,18 +24,18 @@ class MoreInfoWidget extends StatelessWidget {
               children: [
                 const Text(
                   "Details",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                 ),
                 TextButton(
                     onPressed: () {},
                     child: const Text(
                       "See more",
-                      style: TextStyle(fontSize: 17),
+                      style: TextStyle(fontSize: 16),
                     ))
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 15, top: 25),
+              padding: const EdgeInsets.only(bottom: 15, top: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -47,11 +47,15 @@ class MoreInfoWidget extends StatelessWidget {
                   DetailsItem(
                       icon: const Icon(
                         Icons.water_drop_outlined,
+                        color: Colors.lightBlueAccent,
                       ),
                       title: "Humidity",
                       details: '${data?.humidity}%'),
                   DetailsItem(
-                      icon: const Icon(Icons.wind_power_outlined),
+                      icon: const Icon(
+                        Icons.wind_power_outlined,
+                        color: Colors.lightBlue,
+                      ),
                       title: "Wind Speed",
                       details: "${data?.wind} km/h")
                 ],
@@ -102,11 +106,11 @@ class DetailsItem extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 14),
             ),
             Text(
               details,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
             )
           ],
         )

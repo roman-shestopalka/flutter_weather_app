@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/weather_model.dart';
-import 'package:weather_app/presentation/common/app_text_styles.dart';
 import 'package:weather_app/presentation/common/ui/container_card_widget.dart';
 
 class ForecastListWidget extends StatelessWidget {
-  const ForecastListWidget({Key? key, this.data}) : super(key: key);
+  ForecastListWidget({Key? key, this.data}) : super(key: key);
 
   final Weather? data;
 
@@ -13,8 +12,8 @@ class ForecastListWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: SizedBox(
-        height: 230,
-        width: 1000,
+        height: 200,
+        width: 500,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: [
@@ -58,6 +57,7 @@ class ForecastContainerWidget extends StatelessWidget {
   final String weather;
   final String humidity;
   final double paddingLeft;
+
   const ForecastContainerWidget({
     Key? key,
     required this.paddingLeft,
@@ -75,7 +75,7 @@ class ForecastContainerWidget extends StatelessWidget {
       padding: EdgeInsets.only(right: 15, left: paddingLeft),
       child: ContainerCardWidget(
         width: 100,
-        height: 220,
+        height: 0,
         paddingIn: 20,
         widgetDecor: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(50)),
@@ -85,7 +85,7 @@ class ForecastContainerWidget extends StatelessWidget {
             ForecastWidgetItem(
               data: data,
               interWidget: date,
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
             const Icon(
@@ -97,20 +97,20 @@ class ForecastContainerWidget extends StatelessWidget {
             ForecastWidgetItem(
               data: data,
               interWidget: weather,
-              fontSize: 28,
+              fontSize: 22,
               fontWeight: FontWeight.w800,
             ),
             Container(
               padding:
                   const EdgeInsets.only(top: 2, right: 9, bottom: 2, left: 9),
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: Colors.greenAccent,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: ForecastWidgetItem(
                 data: data,
                 interWidget: humidity,
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),

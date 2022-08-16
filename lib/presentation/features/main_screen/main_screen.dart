@@ -15,23 +15,21 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
   Weather? data;
 
   Future<void> getData() async {
-    data = await client.getCurrentWeather("Lviv");
+    data = await client.getCurrentWeather("Ternopil");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xFFEBEBEB),
-        body: SingleChildScrollView(
-          child: FutureBuilder(
-            future: getData(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return HomeScreen(data: data);
-              }
-              return Container(); //TODO: Make a internet connection check
-            },
-          ),
+        body: FutureBuilder(
+          future: getData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return HomeScreen(data: data);
+            }
+            return Container(); //TODO: Make a internet connection check
+          },
         ));
   }
 }
