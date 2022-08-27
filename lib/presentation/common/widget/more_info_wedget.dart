@@ -1,63 +1,49 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/weather_model.dart';
-import 'package:weather_app/presentation/common/ui/container_card_widget.dart';
+import 'package:weather_app/presentation/common/app_colors.dart';
+import 'package:weather_app/presentation/common/icons.dart';
+import 'package:weather_app/presentation/common/widget/container_card_widget.dart';
 
 class MoreInfoWidget extends StatelessWidget {
-  const MoreInfoWidget({Key? key, this.data}) : super(key: key);
+  const MoreInfoWidget({
+    Key? key,
+    this.data,
+  }) : super(key: key);
 
   final Weather? data;
+  final double widthIos = 370;
+  final double widthAndr = 380;
 
   @override
   Widget build(BuildContext context) {
     return ContainerCardWidget(
-        width: 350,
-        height: 200,
+        width: Platform.isIOS ? widthIos : widthAndr,
+        height: 150,
         paddingIn: 15,
-        widgetDecor: BoxDecoration(boxShadow: const [
-          BoxShadow(
-              color: Colors.grey, blurRadius: 15, blurStyle: BlurStyle.normal)
-        ], color: Colors.white, borderRadius: BorderRadius.circular(30)),
+        widgetDecor: BoxDecoration(
+            color: AppColors.oceanBlueLight,
+            borderRadius: BorderRadius.circular(30)),
         widget: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Details",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-                ),
-                TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "See more",
-                      style: TextStyle(fontSize: 16),
-                    ))
-              ],
-            ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 15, top: 20),
+              padding: const EdgeInsets.only(bottom: 15, top: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   DetailsItem(
-                    icon: const Icon(Icons.speed_outlined),
-                    title: "UV     ",
+                    icon: AppIcons.uvIndex,
+                    title: "UV       ",
                     details: "${data?.uv?.toStringAsFixed(1)}",
                   ),
                   DetailsItem(
-                      icon: const Icon(
-                        Icons.water_drop_outlined,
-                        color: Colors.lightBlueAccent,
-                      ),
+                      icon: AppIcons.humidity,
                       title: "Humidity",
                       details: '${data?.humidity}%'),
                   DetailsItem(
-                      icon: const Icon(
-                        Icons.wind_power_outlined,
-                        color: Colors.lightBlue,
-                      ),
+                      icon: AppIcons.windSpeed,
                       title: "Wind Speed",
-                      details: "${data?.wind} km/h")
+                      details: "${data?.wind?.toStringAsFixed(0)} km/h")
                 ],
               ),
             ),
@@ -65,7 +51,7 @@ class MoreInfoWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DetailsItem(
-                    icon: const Icon(Icons.cloud_outlined),
+                    icon: AppIcons.cloud,
                     title: "Cloud",
                     details: "${data?.cloud} %"),
                 DetailsItem(
@@ -75,7 +61,7 @@ class MoreInfoWidget extends StatelessWidget {
                     title: "Visibility",
                     details: "${data?.visibility} km"),
                 DetailsItem(
-                    icon: const Icon(Icons.air_outlined),
+                    icon: AppIcons.windDirection,
                     title: "Wind Direct",
                     details: "${data?.windDir}"),
               ],
@@ -106,11 +92,14 @@ class DetailsItem extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14, color: Colors.white),
             ),
             Text(
               details,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
             )
           ],
         )

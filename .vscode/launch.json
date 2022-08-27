@@ -8,16 +8,16 @@
             "deviceId": "75F03C7F-7C30-48B3-9401-4335A71BAA4B",
         },
         {
-            "name": "Google Pixel 3a",
+            "name": "Google Pixel 4 Xl",
             "request": "launch",
             "type": "dart",
-            "deviceId": "emulator-5554"
+            "deviceId": "9A311FFBA005ZU"
         },
     ],
     "compounds": [
         {
           "name": "All Devices",
-          "configurations": [ "Iphone 13 Pro", "Google Pixel 3a"]
+          "configurations": [ "Iphone 13 Pro", "Google Pixel 4 Xl"]
         }
     ]
 }

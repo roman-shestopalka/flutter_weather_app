@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/API/wheater_api_services.dart';
 import 'package:weather_app/data/models/weather_model.dart';
+import 'package:weather_app/presentation/common/app_colors.dart';
 import 'package:weather_app/presentation/features/home_screen/home_screen.dart';
 
 class HomeScreenPage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFFEBEBEB),
+        backgroundColor: Colors.grey[50],
         body: FutureBuilder(
           future: getData(),
           builder: (context, snapshot) {

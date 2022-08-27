@@ -1,9 +1,6 @@
 // ignore_for_file: file_names
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/presentation/features/main_screen/main_screen.dart';
-import 'package:flutter/services.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

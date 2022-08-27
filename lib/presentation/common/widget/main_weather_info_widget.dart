@@ -1,6 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/weather_model.dart';
-import 'package:weather_app/presentation/common/ui/container_card_widget.dart';
+import 'package:weather_app/presentation/common/app_colors.dart';
+import 'package:weather_app/presentation/common/icons.dart';
+import 'package:weather_app/presentation/common/widget/container_card_widget.dart';
 
 class MainWeatherInfoWidget extends StatelessWidget {
   const MainWeatherInfoWidget({
@@ -9,51 +12,44 @@ class MainWeatherInfoWidget extends StatelessWidget {
   }) : super(key: key);
 
   final Weather? data;
+  final double widthIos = 370;
+  final double widthAndr = 380;
 
   @override
   Widget build(BuildContext context) {
     return ContainerCardWidget(
-      height: 250,
-      width: 350,
+      height: 200,
+      width: Platform.isIOS ? widthIos : widthAndr,
       paddingIn: 15,
       widgetDecor: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xffab2bc1), Color(0xff0a6cba)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          boxShadow: const [
-            BoxShadow(
-                color: Colors.grey, blurRadius: 50, blurStyle: BlurStyle.normal)
-          ],
+          color: AppColors.oceanBlueLight,
           borderRadius: BorderRadius.circular(30)),
       widget: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Icon(
-            Icons.sunny,
-            size: 150,
-            color: Colors.yellow,
+          const Padding(
+            padding: EdgeInsets.only(left: 15),
+            child: AppIcons.sunMain,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               WeatherInfo(
-                text: '${data!.temp?.toStringAsFixed(0)}°',
-                fontSize: 78,
+                text: '${data?.temp?.toStringAsFixed(0)}°',
+                fontSize: 64,
                 fontWeight: FontWeight.bold,
               ), // gradus text
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 5),
                 child: WeatherInfo(
                   text: "Feels Like: ${data!.feelsLike?.toStringAsFixed(1)}°",
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                 ),
               ),
               WeatherInfo(
-                  text: "${data?.date}",
-                  fontSize: 20,
+                  text: "${data?.description}",
+                  fontSize: 14,
                   fontWeight: FontWeight.w300)
             ],
           )

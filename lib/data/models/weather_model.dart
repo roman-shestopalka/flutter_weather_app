@@ -6,8 +6,9 @@ class Weather {
   String? windDir;
   int? cloud;
   int? humidity;
+  int? localTime;
+  int? visibility;
   double? temp;
-  double? visibility;
   double? wind;
   double? uv;
   double? pressure;
@@ -46,6 +47,8 @@ class Weather {
   double? maxTemp3;
   double? avghumidity3;
 
+  double? resultWind;
+
   Weather(
       {this.cityName,
       this.description,
@@ -59,6 +62,7 @@ class Weather {
       this.windDir,
       this.uv,
       this.visibility,
+      this.localTime,
 
       ////forecast values init
       this.cityName1,
@@ -98,39 +102,15 @@ class Weather {
     Map<String, dynamic> json,
   ) {
     //current weather
-    cityName = json["location"]["name"];
-    temp = json["current"]["temp_c"];
-    cloud = json["current"]["cloud"];
-    description = json["current"]["condition"]["text"];
-    visibility = json["current"]["vis_km"];
-    icon = json["current"]["condition"]["icon"];
-    wind = json["current"]["wind_kph"];
-    windDir = json["current"]["wind_dir"];
-    pressure = json["current"]["pressure_mb"];
-    humidity = json["current"]["humidity"];
-    uv = json["current"]["uv"];
-    feelsLike = json["current"]["feelslike_c"];
-
-    //forecast weather first
-    date = json["forecast"]["forecastday"][1]["date"];
-    maxTemp = json["forecast"]["forecastday"][1]["day"]["maxtemp_c"];
-    maxWind = json["forecast"]["forecastday"][1]["day"]["maxwind_kph"];
-    avghumidity = json["forecast"]["forecastday"][1]["day"]["avghumidity"];
-
-    //forecast weather other days
-    date1 = json["forecast"]["forecastday"][2]["date"];
-    maxTemp1 = json["forecast"]["forecastday"][2]["day"]["maxtemp_c"];
-    maxWind1 = json["forecast"]["forecastday"][2]["day"]["maxwind_kph"];
-    avghumidity1 = json["forecast"]["forecastday"][2]["day"]["avghumidity"];
-
-    date2 = json["forecast"]["forecastday"][3]["date"];
-    maxTemp2 = json["forecast"]["forecastday"][3]["day"]["maxtemp_c"];
-    maxWind2 = json["forecast"]["forecastday"][3]["day"]["maxwind_kph"];
-    avghumidity2 = json["forecast"]["forecastday"][3]["day"]["avghumidity"];
-
-    date3 = json["forecast"]["forecastday"][4]["date"];
-    maxTemp3 = json["forecast"]["forecastday"][4]["day"]["maxtemp_c"];
-    maxWind3 = json["forecast"]["forecastday"][4]["day"]["maxwind_kph"];
-    avghumidity3 = json["forecast"]["forecastday"][4]["day"]["avghumidity"];
+    cityName = json["city"]["name"];
+    temp = json["list"][0]["main"]["temp"];
+    feelsLike = json["list"][0]["main"]["feels_like"];
+    maxTemp = json["list"][0]["main"]["temp_max"];
+    minTemp = json["list"][0]["main"]["temp_min"];
+    humidity = json["list"][0]["main"]["humidity"];
+    cloud = json["list"][0]["clouds"]["all"];
+    wind = json["list"][0]["wind"]["speed"] / 1000;
+    description = json["list"][0]["weather"][0]["description"];
+    visibility = json["list"][0]["visibility"];
   }
 }
