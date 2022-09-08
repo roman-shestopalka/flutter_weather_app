@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ContainerCardWidget extends StatelessWidget {
+class ContainerWidget extends StatelessWidget {
   final double width;
   final double? height;
   final Widget widget;
   final double paddingIn;
   final dynamic widgetDecor;
 
-  const ContainerCardWidget({
+  const ContainerWidget({
     Key? key,
     required this.width,
     this.height,

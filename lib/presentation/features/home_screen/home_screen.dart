@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/presentation/common/widget/captions.dart';
-import 'package:weather_app/presentation/common/widget/days_list.dart';
 import 'package:weather_app/presentation/common/widget/forecast_list_widget.dart';
 import 'package:weather_app/presentation/common/widget/main_weather_info_widget.dart';
 import 'package:weather_app/presentation/common/widget/more_info_wedget.dart';
@@ -28,7 +27,6 @@ class HomeScreen extends StatelessWidget {
           CaptionsWidget(
             title: "${data!.cityName}",
           ),
-          const DaysList(),
           Padding(
             padding: const EdgeInsets.only(bottom: 15),
             child: MainWeatherInfoWidget(data: data),

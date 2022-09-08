@@ -17,7 +17,9 @@ class CaptionsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-                padding: const EdgeInsets.only(left: 0),
+                padding: const EdgeInsets.only(
+                  left: 0,
+                ),
                 child: CityButton(title: title)),
             Text(
               dateFormat,

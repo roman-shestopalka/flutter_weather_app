@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/presentation/common/app_colors.dart';
@@ -20,42 +21,55 @@ class ForecastListWidget extends StatelessWidget {
       child: Expanded(
         child: SizedBox(
           width: 500,
-          height: 180,
+          height: 190,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
               ForecastContainerWidget(
                 data: data,
-                date: "${data?.date?.substring(5)}",
-                weather: "${data?.maxTemp?.toStringAsFixed(0)}°",
-                humidity: "${data?.avghumidity?.toStringAsFixed(0)}%",
+                date: "${data?.dateFormated}",
+                weather: "${data?.temp1?.toStringAsFixed(0)}°",
+                humidity: "${data?.humidity1?.toStringAsFixed(0)}%",
                 paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
-                avghumidity: data?.avghumidity,
+                avghumidity: data?.humidity1,
+                icon: "${data?.icon1}",
               ),
               ForecastContainerWidget(
                 data: data,
-                date: "${data?.date1?.substring(5)}",
-                weather: "${data?.maxTemp1?.toStringAsFixed(0)}°",
-                humidity: "${data?.avghumidity1?.toStringAsFixed(0)}%",
-                paddingLeft: 0,
-                avghumidity: data?.avghumidity1,
+                date: "${data?.dateFormated1}",
+                weather: "${data?.temp2?.toStringAsFixed(0)}°",
+                humidity: "${data?.humidity2?.toStringAsFixed(0)}%",
+                paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
+                avghumidity: data?.humidity2,
+                icon: "${data?.icon2}",
               ),
               ForecastContainerWidget(
                 data: data,
-                date: "${data?.date2?.substring(5)}",
-                weather: "${data?.maxTemp2?.toStringAsFixed(0)}°",
-                humidity: "${data?.avghumidity2?.toStringAsFixed(0)}%",
-                paddingLeft: 0,
-                avghumidity: data?.avghumidity2,
+                date: "${data?.dateFormated2}",
+                weather: "${data?.temp3?.toStringAsFixed(0)}°",
+                humidity: "${data?.humidity3?.toStringAsFixed(0)}%",
+                paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
+                avghumidity: data?.humidity3,
+                icon: "${data?.icon3}",
               ),
               ForecastContainerWidget(
                 data: data,
-                date: "${data?.date3?.substring(5)}",
-                weather: "${data?.maxTemp3?.toStringAsFixed(0)}°",
-                humidity: "${data?.avghumidity3?.toStringAsFixed(0)}%",
-                paddingLeft: 0,
-                avghumidity: data?.avghumidity3,
-              )
+                date: "${data?.dateFormated3}",
+                weather: "${data?.temp4?.toStringAsFixed(0)}°",
+                humidity: "${data?.humidity4?.toStringAsFixed(0)}%",
+                paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
+                avghumidity: data?.humidity4,
+                icon: "${data?.icon4}",
+              ),
+              ForecastContainerWidget(
+                data: data,
+                date: "${data?.dateFormated4}",
+                weather: "${data?.temp5?.toStringAsFixed(0)}°",
+                humidity: "${data?.humidity5?.toStringAsFixed(0)}%",
+                paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
+                avghumidity: data?.humidity5,
+                icon: "${data?.icon2}",
+              ),
             ],
           ),
         ),
@@ -70,7 +84,8 @@ class ForecastContainerWidget extends StatelessWidget {
   final String weather;
   final String humidity;
   final double paddingLeft;
-  final double? avghumidity;
+  final String icon;
+  final int? avghumidity;
 
   const ForecastContainerWidget({
     Key? key,
@@ -80,22 +95,23 @@ class ForecastContainerWidget extends StatelessWidget {
     required this.weather,
     required this.humidity,
     this.avghumidity,
+    required this.icon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Color getColors() {
-    //   if (avghumidity! < 60) {
-    //     return Colors.green;
-    //   } else if (avghumidity! < 80) {
-    //     return Colors.orange;
-    //   }
-    //   return Colors.red;
-    // }
+    Color getColors() {
+      if (avghumidity! < 65) {
+        return Colors.green;
+      } else if (avghumidity! < 85) {
+        return Colors.orange;
+      }
+      return Colors.red;
+    }
 
     return Padding(
-      padding: EdgeInsets.only(right: 15, left: paddingLeft),
-      child: ContainerCardWidget(
+      padding: EdgeInsets.only(right: 5, left: paddingLeft),
+      child: ContainerWidget(
         width: 100,
         paddingIn: 15,
         widgetDecor: BoxDecoration(
@@ -111,7 +127,8 @@ class ForecastContainerWidget extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.w600,
             ),
-            AppIcons.sun,
+            CachedNetworkImage(
+                imageUrl: "https://openweathermap.org/img/wn/$icon@2x.png"),
             ForecastWidgetItem(
               data: data,
               widget: weather,
@@ -125,7 +142,7 @@ class ForecastContainerWidget extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 2, right: 9, bottom: 2, left: 9),
                 decoration: BoxDecoration(
-                  // color: getColors(),
+                  color: getColors(),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: ForecastWidgetItem(
