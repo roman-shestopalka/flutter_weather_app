@@ -14,15 +14,17 @@ class MainWeatherInfoWidget extends StatelessWidget {
   final Weather? data;
   final double widthIos = 370;
   final double widthAndr = 380;
+  final double paddingIos = 0;
+  final double paddingAndr = 30;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 40),
+      padding: const EdgeInsets.only(top: 10),
       child: ContainerWidget(
-        height: 190,
+        height: 210,
         width: Platform.isIOS ? widthIos : widthAndr,
-        paddingIn: 15,
+        paddingIn: 0,
         widgetDecor: BoxDecoration(
             color: AppColors.oceanBlueLight,
             borderRadius: BorderRadius.circular(30)),
@@ -32,29 +34,33 @@ class MainWeatherInfoWidget extends StatelessWidget {
             CachedNetworkImage(
                 imageUrl:
                     "https://openweathermap.org/img/wn/${data?.icon}@4x.png"),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                WeatherInfo(
-                  text: '${data?.temp?.toStringAsFixed(0)}°C',
-                  fontSize: 64,
-                  fontWeight: FontWeight.bold,
-                ), // gradus text
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 5),
-                  child: WeatherInfo(
+            Padding(
+              padding: const EdgeInsets.only(top: 25, right: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        bottom: Platform.isIOS ? paddingIos : paddingAndr),
+                    child: WeatherInfo(
+                      text: '${data?.temp?.toStringAsFixed(0)}°C',
+                      fontSize: 64,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ), // gradus text
+                  WeatherInfo(
                     text:
-                        "Feels Like:  ${data!.feelsLike?.toStringAsFixed(1)} °C",
+                        "Feels Like:  ${data!.feelsLike?.toStringAsFixed(0)}°C",
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                   ),
-                ),
-                WeatherInfo(
-                    text:
-                        "${data?.description?[0].toUpperCase()}${data?.description?.substring(1)}",
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600)
-              ],
+                  WeatherInfo(
+                      text:
+                          "${data?.description?[0].toUpperCase()}${data?.description?.substring(1)}",
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600)
+                ],
+              ),
             )
           ],
         ),

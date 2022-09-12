@@ -4,31 +4,36 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/presentation/common/app_colors.dart';
-import 'package:weather_app/presentation/common/icons.dart';
 import 'package:weather_app/presentation/common/widget/container_card_widget.dart';
 
 class ForecastListWidget extends StatelessWidget {
   const ForecastListWidget({Key? key, this.data}) : super(key: key);
-
   final Weather? data;
-  final double paddingIos = 10;
-  final double paddingAndr = 20;
+  final double paddingIos = 1;
+  final double paddingAndr = 1;
+  final double widthIos = 370;
+  final double widthAndr = 380;
+  final double heightIos = 230;
+  final double heightAndr = 220;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: Expanded(
-        child: SizedBox(
-          width: 500,
-          height: 190,
+        child: Container(
+          decoration: BoxDecoration(
+              color: const Color(0xB9EBEBEB),
+              borderRadius: BorderRadius.circular(30)),
+          width: Platform.isIOS ? widthIos : widthAndr,
+          height: Platform.isIOS ? heightIos : heightAndr,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
               ForecastContainerWidget(
                 data: data,
                 date: "${data?.dateFormated}",
-                weather: "${data?.temp1?.toStringAsFixed(0)}°",
+                weather: "${data?.temp1?.toStringAsFixed(0)}°C",
                 humidity: "${data?.humidity1?.toStringAsFixed(0)}%",
                 paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
                 avghumidity: data?.humidity1,
@@ -37,7 +42,7 @@ class ForecastListWidget extends StatelessWidget {
               ForecastContainerWidget(
                 data: data,
                 date: "${data?.dateFormated1}",
-                weather: "${data?.temp2?.toStringAsFixed(0)}°",
+                weather: "${data?.temp2?.toStringAsFixed(0)}°C",
                 humidity: "${data?.humidity2?.toStringAsFixed(0)}%",
                 paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
                 avghumidity: data?.humidity2,
@@ -46,7 +51,7 @@ class ForecastListWidget extends StatelessWidget {
               ForecastContainerWidget(
                 data: data,
                 date: "${data?.dateFormated2}",
-                weather: "${data?.temp3?.toStringAsFixed(0)}°",
+                weather: "${data?.temp3?.toStringAsFixed(0)}°C",
                 humidity: "${data?.humidity3?.toStringAsFixed(0)}%",
                 paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
                 avghumidity: data?.humidity3,
@@ -55,7 +60,7 @@ class ForecastListWidget extends StatelessWidget {
               ForecastContainerWidget(
                 data: data,
                 date: "${data?.dateFormated3}",
-                weather: "${data?.temp4?.toStringAsFixed(0)}°",
+                weather: "${data?.temp4?.toStringAsFixed(0)}°C",
                 humidity: "${data?.humidity4?.toStringAsFixed(0)}%",
                 paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
                 avghumidity: data?.humidity4,
@@ -64,7 +69,7 @@ class ForecastListWidget extends StatelessWidget {
               ForecastContainerWidget(
                 data: data,
                 date: "${data?.dateFormated4}",
-                weather: "${data?.temp5?.toStringAsFixed(0)}°",
+                weather: "${data?.temp5?.toStringAsFixed(0)}°C",
                 humidity: "${data?.humidity5?.toStringAsFixed(0)}%",
                 paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
                 avghumidity: data?.humidity5,
@@ -110,48 +115,54 @@ class ForecastContainerWidget extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.only(right: 5, left: paddingLeft),
+      padding: EdgeInsets.only(right: 0, left: paddingLeft),
       child: ContainerWidget(
-        width: 100,
-        paddingIn: 15,
-        widgetDecor: BoxDecoration(
-            color: AppColors.oceanBlueLight,
-            borderRadius: BorderRadius.circular(30)),
+        width: 110,
+        paddingIn: 25,
+        widgetDecor: const BoxDecoration(color: Colors.transparent),
         widget: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ForecastWidgetItem(
-              data: data,
-              widget: date,
-              fontSize: 16,
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: ForecastWidgetItem(
+                data: data,
+                widget: date,
+                fontSize: 15,
+                color: const Color(0xFF5F5F5F),
+                fontWeight: FontWeight.w600,
+              ),
             ),
-            CachedNetworkImage(
-                imageUrl: "https://openweathermap.org/img/wn/$icon@2x.png"),
-            ForecastWidgetItem(
-              data: data,
-              widget: weather,
-              fontSize: 22,
-              color: Colors.white,
-              fontWeight: FontWeight.w800,
+            Container(
+              decoration: BoxDecoration(
+                  color: AppColors.lightGreen,
+                  borderRadius: BorderRadius.circular(30)),
+              child: CachedNetworkImage(
+                  imageUrl: "https://openweathermap.org/img/wn/$icon@4x.png"),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: Container(
-                padding:
-                    const EdgeInsets.only(top: 2, right: 9, bottom: 2, left: 9),
-                decoration: BoxDecoration(
-                  color: getColors(),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: ForecastWidgetItem(
-                  data: data,
-                  widget: humidity,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
+              padding: const EdgeInsets.symmetric(vertical: 7),
+              child: ForecastWidgetItem(
+                data: data,
+                widget: weather,
+                fontSize: Platform.isIOS ? 18 : 22,
+                color: const Color(0xFF5F5F5F),
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            Container(
+              padding:
+                  const EdgeInsets.only(top: 2, right: 9, bottom: 2, left: 9),
+              decoration: BoxDecoration(
+                color: getColors(),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: ForecastWidgetItem(
+                data: data,
+                widget: humidity,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
               ),
             ),
           ],
@@ -180,11 +191,9 @@ class ForecastWidgetItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 0),
-      child: Text(widget,
-          style: TextStyle(
-              fontSize: fontSize, fontWeight: fontWeight, color: color)),
-    );
+    return Text(widget,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            fontSize: fontSize, fontWeight: fontWeight, color: color));
   }
 }

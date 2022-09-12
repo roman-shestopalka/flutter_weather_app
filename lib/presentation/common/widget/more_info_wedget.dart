@@ -22,7 +22,7 @@ class MoreInfoWidget extends StatelessWidget {
         height: 150,
         paddingIn: 15,
         widgetDecor: BoxDecoration(
-            color: AppColors.oceanBlueLight,
+            color: const Color(0xB9EBEBEB),
             borderRadius: BorderRadius.circular(30)),
         widget: Column(
           children: [
@@ -34,7 +34,7 @@ class MoreInfoWidget extends StatelessWidget {
                   DetailsItem(
                       icon: const Icon(
                         Icons.arrow_upward_outlined,
-                        color: Colors.white,
+                        color: Colors.red,
                       ), //TODO: Change google icon to const image from file
                       title: "Max Temp",
                       details: "${data?.maxTemp?.toStringAsFixed(0)}°C"),
@@ -55,14 +55,14 @@ class MoreInfoWidget extends StatelessWidget {
                 DetailsItem(
                     icon: const Icon(
                       Icons.arrow_downward_outlined,
-                      color: Colors.white,
+                      color: Colors.green,
                     ),
                     title: "Min Temp",
                     details: "${data?.minTemp?.toStringAsFixed(0)}°C"),
                 DetailsItem(
                     icon: const Icon(
                       Icons.visibility,
-                      color: Colors.white,
+                      color: Color(0xFF5F5F5F),
                     ),
                     title: "Visibility",
                     details: "${data?.visibility} km"),
@@ -70,7 +70,7 @@ class MoreInfoWidget extends StatelessWidget {
                     icon: AppIcons.cloud,
                     title: "Cloud",
                     //TODO: Fix hardcode right here. Problem with item positioned !!!
-                    details: "${data?.cloud} %            ")
+                    details: "${data?.cloud} %           ")
               ],
             )
           ],
@@ -99,14 +99,17 @@ class DetailsItem extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 14, color: Colors.white),
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF5F5F5F),
+                  fontWeight: FontWeight.w600),
             ),
             Text(
               details,
               style: const TextStyle(
                   fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white),
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF5F5F5F)),
             )
           ],
         )
