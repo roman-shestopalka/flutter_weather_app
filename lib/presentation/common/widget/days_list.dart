@@ -1,94 +1,89 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:weather_app/presentation/common/app_colors.dart';
+import 'package:weather_app/presentation/features/home_screen/home_screen.dart';
 
 class DaysList extends StatelessWidget {
-  const DaysList({
-    Key? key,
-  }) : super(key: key);
+  final Color btnClr =
+      Colors.transparent; // add this values to constant file!!!
+  const DaysList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 40),
-      child: Column(
-        children: [
-          SizedBox(
-            width: 350,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Today",
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w600),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "7 days",
-                          style: TextStyle(fontSize: 16, color: Colors.black87),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 2),
-                        child: Icon(
-                          Icons.keyboard_arrow_right,
-                          color: AppColors.lightBlue,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
+      padding: const EdgeInsets.symmetric(vertical: 25),
+      child: SizedBox(
+        height: 30,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            DayBtn(
+              text: "$dateFormat",
+              paddingLeft: 15,
+              borderColor: AppColors.textColor,
             ),
-          ),
-          SizedBox(
-            width: 500,
-            height: 35,
-            child: ListView(
-              padding: const EdgeInsets.only(
-                left: 25,
-              ),
-              scrollDirection: Axis.horizontal,
-              children: const [
-                ListButton(),
-                ListButton(),
-                ListButton(),
-                ListButton(),
-                ListButton(),
-                ListButton()
-              ],
+            DayBtn(
+              text: "$dateFormat1",
+              paddingLeft: 0,
+              borderColor: btnClr,
             ),
-          )
-        ],
+            DayBtn(
+              text: "$dateFormat2",
+              paddingLeft: 0,
+              borderColor: btnClr,
+            ),
+            DayBtn(
+              text: "$dateFormat3",
+              paddingLeft: 0,
+              borderColor: btnClr,
+            ),
+            DayBtn(
+              text: "$dateFormat4",
+              paddingLeft: 0,
+              borderColor: btnClr,
+            ),
+            DayBtn(
+              text: "$dateFormat5",
+              paddingLeft: 0,
+              borderColor: btnClr,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class ListButton extends StatelessWidget {
-  const ListButton({
+class DayBtn extends StatelessWidget {
+  final String text;
+  final double paddingLeft;
+  final Color borderColor;
+  const DayBtn({
+    required this.text,
+    required this.paddingLeft,
+    required this.borderColor,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 10),
+      padding: EdgeInsets.only(right: 10, left: paddingLeft),
       child: OutlinedButton(
-          style: ButtonStyle(
-              side: MaterialStateProperty.all(
-                  const BorderSide(color: AppColors.oceanBlue))),
           onPressed: () {},
-          child: const Text(
-            "Test 10 Test",
-            style: TextStyle(color: Colors.black87),
+          style: ButtonStyle(
+            side: MaterialStateProperty.all(
+                BorderSide(color: borderColor, width: 1)),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0))),
+          ),
+          child: Text(
+            text,
+            style: const TextStyle(
+                color: AppColors.textColor, fontWeight: FontWeight.w600),
           )),
     );
   }

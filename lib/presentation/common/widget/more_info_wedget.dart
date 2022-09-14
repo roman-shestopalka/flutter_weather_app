@@ -17,12 +17,12 @@ class MoreInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ContainerCardWidget(
+    return ContainerWidget(
         width: Platform.isIOS ? widthIos : widthAndr,
         height: 150,
         paddingIn: 15,
         widgetDecor: BoxDecoration(
-            color: AppColors.oceanBlueLight,
+            color: const Color(0xB9EBEBEB),
             borderRadius: BorderRadius.circular(30)),
         widget: Column(
           children: [
@@ -32,18 +32,20 @@ class MoreInfoWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   DetailsItem(
-                    icon: AppIcons.uvIndex,
-                    title: "UV       ",
-                    details: "${data?.uv?.toStringAsFixed(1)}",
-                  ),
+                      icon: const Icon(
+                        Icons.arrow_upward_outlined,
+                        color: Colors.red,
+                      ), //TODO: Change google icon to const image from file
+                      title: "Max Temp",
+                      details: "${data?.maxTemp?.toStringAsFixed(0)}°C"),
                   DetailsItem(
                       icon: AppIcons.humidity,
                       title: "Humidity",
-                      details: '${data?.humidity}%'),
+                      details: "${data?.humidity}%"),
                   DetailsItem(
                       icon: AppIcons.windSpeed,
                       title: "Wind Speed",
-                      details: "${data?.wind?.toStringAsFixed(0)} km/h")
+                      details: "${data?.wind?.toStringAsFixed(1)} km/h")
                 ],
               ),
             ),
@@ -51,19 +53,24 @@ class MoreInfoWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DetailsItem(
-                    icon: AppIcons.cloud,
-                    title: "Cloud",
-                    details: "${data?.cloud} %"),
+                    icon: const Icon(
+                      Icons.arrow_downward_outlined,
+                      color: Colors.green,
+                    ),
+                    title: "Min Temp",
+                    details: "${data?.minTemp?.toStringAsFixed(0)}°C"),
                 DetailsItem(
                     icon: const Icon(
                       Icons.visibility,
+                      color: Color(0xFF5F5F5F),
                     ),
                     title: "Visibility",
                     details: "${data?.visibility} km"),
                 DetailsItem(
-                    icon: AppIcons.windDirection,
-                    title: "Wind Direct",
-                    details: "${data?.windDir}"),
+                    icon: AppIcons.cloud,
+                    title: "Cloud",
+                    //TODO: Fix hardcode right here. Problem with item positioned !!!
+                    details: "${data?.cloud} %           ")
               ],
             )
           ],
@@ -92,14 +99,17 @@ class DetailsItem extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 14, color: Colors.white),
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF5F5F5F),
+                  fontWeight: FontWeight.w600),
             ),
             Text(
               details,
               style: const TextStyle(
                   fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white),
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF5F5F5F)),
             )
           ],
         )
