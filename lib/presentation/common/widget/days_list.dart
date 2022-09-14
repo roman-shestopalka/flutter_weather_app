@@ -23,7 +23,7 @@ class DaysList extends StatelessWidget {
             DayBtn(
               text: "$dateFormat",
               paddingLeft: 15,
-              borderColor: AppColors.oceanBlue,
+              borderColor: AppColors.textColor,
             ),
             DayBtn(
               text: "$dateFormat1",
@@ -82,7 +82,8 @@ class DayBtn extends StatelessWidget {
           ),
           child: Text(
             text,
-            style: const TextStyle(color: Colors.black),
+            style: const TextStyle(
+                color: AppColors.textColor, fontWeight: FontWeight.w600),
           )),
     );
   }

@@ -135,7 +135,7 @@ class ForecastContainerWidget extends StatelessWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: AppColors.lightGreen,
+                  color: AppColors.lightBlue,
                   borderRadius: BorderRadius.circular(30)),
               child: CachedNetworkImage(
                   imageUrl: "https://openweathermap.org/img/wn/$icon@4x.png"),

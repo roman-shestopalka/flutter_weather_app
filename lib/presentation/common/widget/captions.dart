@@ -46,7 +46,7 @@ class CityButton extends StatelessWidget {
     return OutlinedButton(
         style: ButtonStyle(
           side: MaterialStateProperty.all(
-              const BorderSide(color: AppColors.oceanBlue, width: 2)),
+              const BorderSide(color: AppColors.textColor, width: 2)),
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0))),
         ),
@@ -56,7 +56,7 @@ class CityButton extends StatelessWidget {
             const Icon(
               Icons.location_pin,
               size: 18,
-              color: AppColors.oceanBlue,
+              color: AppColors.textColor,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 5),

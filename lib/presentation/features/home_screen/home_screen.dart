@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
           CaptionsWidget(
             title: "${data!.cityName}",
           ),
-          DaysList(),
+          const DaysList(),
           Padding(
             padding: const EdgeInsets.only(bottom: 15),
             child: MainWeatherInfoWidget(data: data),

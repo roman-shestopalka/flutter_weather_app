@@ -20,10 +20,10 @@ class Weather {
   int? cloud;
   int? humidity;
   int? dt;
+  int? feelsLike;
   double? visibility;
   double? temp;
   double? wind;
-  double? feelsLike;
   double? maxTemp;
   double? minTemp;
   //forecast

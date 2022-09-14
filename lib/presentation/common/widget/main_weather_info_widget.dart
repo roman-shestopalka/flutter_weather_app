@@ -26,7 +26,7 @@ class MainWeatherInfoWidget extends StatelessWidget {
         width: Platform.isIOS ? widthIos : widthAndr,
         paddingIn: 0,
         widgetDecor: BoxDecoration(
-            color: AppColors.oceanBlueLight,
+            color: AppColors.lightBlue,
             borderRadius: BorderRadius.circular(30)),
         widget: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,7 +35,7 @@ class MainWeatherInfoWidget extends StatelessWidget {
                 imageUrl:
                     "https://openweathermap.org/img/wn/${data?.icon}@4x.png"),
             Padding(
-              padding: const EdgeInsets.only(top: 25, right: 25),
+              padding: const EdgeInsets.only(top: 25, right: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -44,7 +44,7 @@ class MainWeatherInfoWidget extends StatelessWidget {
                         bottom: Platform.isIOS ? paddingIos : paddingAndr),
                     child: WeatherInfo(
                       text: '${data?.temp?.toStringAsFixed(0)}°C',
-                      fontSize: 64,
+                      fontSize: 56,
                       fontWeight: FontWeight.bold,
                     ),
                   ), // gradus text
