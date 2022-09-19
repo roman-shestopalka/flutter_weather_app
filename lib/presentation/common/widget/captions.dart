@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/presentation/common/app_colors.dart';
+import 'package:weather_app/presentation/features/city_screen/city_screen.dart';
 import 'package:weather_app/presentation/features/home_screen/home_screen.dart';
 
 class CaptionsWidget extends StatelessWidget {
@@ -50,7 +51,10 @@ class CityButton extends StatelessWidget {
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0))),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const CityScreen()));
+        },
         child: Row(
           children: [
             const Icon(

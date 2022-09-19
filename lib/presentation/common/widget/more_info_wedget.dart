@@ -1,7 +1,6 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/weather_model.dart';
-import 'package:weather_app/presentation/common/app_colors.dart';
 import 'package:weather_app/presentation/common/icons.dart';
 import 'package:weather_app/presentation/common/widget/container_card_widget.dart';
 

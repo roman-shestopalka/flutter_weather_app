@@ -20,7 +20,7 @@ class Weather {
   int? cloud;
   int? humidity;
   int? dt;
-  int? feelsLike;
+  double? feelsLike;
   double? visibility;
   double? temp;
   double? wind;
@@ -30,7 +30,7 @@ class Weather {
   double? temp1;
   double? temp2;
   double? temp3;
-  double? temp4;
+  num? temp4;
   double? temp5;
   double? temp6;
   double? temp7;
@@ -112,7 +112,7 @@ class Weather {
     //current weather
     cityName = json["city"]["name"];
     temp = json["list"][0]["main"]["temp"];
-    feelsLike = json["list"][0]["main"]["feels_like"];
+    feelsLike = json["list"][0]["main"]["feels_like"] as double;
     maxTemp = json["list"][0]["main"]["temp_max"];
     minTemp = json["list"][0]["main"]["temp_min"];
     humidity = json["list"][0]["main"]["humidity"];
