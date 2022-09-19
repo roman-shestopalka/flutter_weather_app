@@ -1,8 +1,6 @@
 // ignore_for_file: unnecessary_string_interpolations
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:weather_app/presentation/common/app_colors.dart';
 import 'package:weather_app/presentation/features/home_screen/home_screen.dart';
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/API/wheater_api_services.dart';
 import 'package:weather_app/data/models/weather_model.dart';
+import 'package:weather_app/presentation/features/city_screen/city_screen.dart';
 import 'package:weather_app/presentation/features/home_screen/home_screen.dart';
 
 class HomeScreenPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class HomeScreenPage extends StatefulWidget {
 class _HomeScreenPageState extends State<HomeScreenPage> {
   WeatherApiService client = WeatherApiService();
   Weather? data;
+  late final CityScreen? getCurrentCity;
 
   Future<void> getData() async {
     data = await client.getCurrentWeather("Ternopil");
