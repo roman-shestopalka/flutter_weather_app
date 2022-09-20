@@ -20,6 +20,8 @@ dependencies:
   flutter_bloc: ^8.1.1
   bloc: ^8.1.0
   cached_network_image: ^3.2.2
+  provider: ^6.0.3
+  introduction_screen: ^3.0.2
 
 dev_dependencies:
   flutter_test:
