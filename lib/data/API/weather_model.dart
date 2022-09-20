@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
+import 'dart:core';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class Weather {
+class Weather extends ChangeNotifier {
   //current weather values
   String? cityName;
   String? description;
@@ -17,24 +19,24 @@ class Weather {
   String? icon8;
   String? dtt;
   String? date;
-  int? cloud;
-  int? humidity;
-  int? dt;
-  double? feelsLike;
-  double? visibility;
-  double? temp;
-  double? wind;
-  double? maxTemp;
-  double? minTemp;
+  num? cloud;
+  num? humidity;
+  num? dt;
+  num? feelsLike;
+  num? visibility;
+  num? temp;
+  num? wind;
+  num? maxTemp;
+  num? minTemp;
   //forecast
-  double? temp1;
-  double? temp2;
-  double? temp3;
+  num? temp1;
+  num? temp2;
+  num? temp3;
   num? temp4;
-  double? temp5;
-  double? temp6;
-  double? temp7;
-  double? temp8;
+  num? temp5;
+  num? temp6;
+  num? temp7;
+  num? temp8;
   int? humidity1;
   int? humidity2;
   int? humidity3;
@@ -155,9 +157,8 @@ class Weather {
     icon6 = json["list"][6]["weather"][0]["icon"];
     icon7 = json["list"][7]["weather"][0]["icon"];
     icon8 = json["list"][8]["weather"][0]["icon"];
-
     //DATEFORMATED
-    //TODO: make with cicle "for"
+
     dateTime = DateTime.parse("$date");
     dateFormated = DateFormat("EEE d H:mm").format(dateTime);
     //

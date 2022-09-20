@@ -1,6 +1,6 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
-import 'package:weather_app/data/models/weather_model.dart';
+import 'package:weather_app/data/API/weather_model.dart';
 import 'package:weather_app/presentation/common/icons.dart';
 import 'package:weather_app/presentation/common/widget/container_card_widget.dart';
 
@@ -68,7 +68,6 @@ class MoreInfoWidget extends StatelessWidget {
                 DetailsItem(
                     icon: AppIcons.cloud,
                     title: "Cloud",
-                    //TODO: Fix hardcode right here. Problem with item positioned !!!
                     details: "${data?.cloud} %           ")
               ],
             )

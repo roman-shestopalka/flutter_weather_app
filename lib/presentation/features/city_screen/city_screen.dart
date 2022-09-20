@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/presentation/common/app_colors.dart';
 import 'package:weather_app/presentation/common/city.dart';
-import 'package:weather_app/presentation/features/main_screen/main_screen.dart';
 
 class CityScreen extends StatefulWidget {
   const CityScreen({Key? key}) : super(key: key);

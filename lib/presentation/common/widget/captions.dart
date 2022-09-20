@@ -14,6 +14,7 @@ class CaptionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
         backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
