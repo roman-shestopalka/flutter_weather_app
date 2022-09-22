@@ -30,17 +30,7 @@ class _CityScreenState extends State<CityScreen> {
                 fontWeight: FontWeight.w600),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.lightBlue,
-          splashColor: Colors.transparent,
-          child: const Icon(
-            Icons.location_pin,
-            color: AppColors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        floatingActionButton: const FaB(),
         body: ListView.builder(
           itemCount: cities.length,
           itemBuilder: (BuildContext context, int index) {
@@ -88,5 +78,26 @@ class _CityScreenState extends State<CityScreen> {
             );
           },
         ));
+  }
+}
+
+class FaB extends StatelessWidget {
+  const FaB({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: AppColors.lightBlue,
+      splashColor: Colors.transparent,
+      child: const Icon(
+        Icons.location_pin,
+        color: AppColors.white,
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
   }
 }
