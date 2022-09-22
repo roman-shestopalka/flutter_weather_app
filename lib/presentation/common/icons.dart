@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/presentation/common/app_colors.dart';
 
 class AppIcons {
   static const sun = Image(
@@ -107,18 +108,20 @@ class AppIcons {
     width: 50,
     height: 50,
   );
-  static const lightRain = Image(
+  static const unchecked = Image(
     image: AssetImage(
-      'assets/images/rain.png',
+      'assets/images/radio_unchecked.png',
     ),
     width: 50,
     height: 50,
+    color: AppColors.lightBlue,
   );
-  static const heavyRain = Image(
+  static const cheked = Image(
     image: AssetImage(
-      'assets/images/cloud_rain.png',
+      'assets/images/radio_checked.png',
     ),
     width: 50,
     height: 50,
+    color: AppColors.lightBlue,
   );
 }

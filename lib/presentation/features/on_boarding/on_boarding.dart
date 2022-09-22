@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:weather_app/presentation/common/app_colors.dart';
 
