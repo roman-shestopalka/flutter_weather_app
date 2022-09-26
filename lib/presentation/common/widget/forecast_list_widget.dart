@@ -19,64 +19,62 @@ class ForecastListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15),
-      child: Expanded(
-        child: Container(
-          decoration: BoxDecoration(
-              color: const Color(0xB9EBEBEB),
-              borderRadius: BorderRadius.circular(30)),
-          width: Platform.isIOS ? widthIos : widthAndr,
-          height: Platform.isIOS ? heightIos : heightAndr,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              ForecastContainerWidget(
-                data: data,
-                date: "${data?.dateFormated}",
-                weather: "${data?.temp1?.toStringAsFixed(0)}°C",
-                humidity: "${data?.humidity1?.toStringAsFixed(0)}%",
-                paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
-                avghumidity: data?.humidity1,
-                icon: "${data?.icon1}",
-              ),
-              ForecastContainerWidget(
-                data: data,
-                date: "${data?.dateFormated1}",
-                weather: "${data?.temp2?.toStringAsFixed(0)}°C",
-                humidity: "${data?.humidity2?.toStringAsFixed(0)}%",
-                paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
-                avghumidity: data?.humidity2,
-                icon: "${data?.icon2}",
-              ),
-              ForecastContainerWidget(
-                data: data,
-                date: "${data?.dateFormated2}",
-                weather: "${data?.temp3?.toStringAsFixed(0)}°C",
-                humidity: "${data?.humidity3?.toStringAsFixed(0)}%",
-                paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
-                avghumidity: data?.humidity3,
-                icon: "${data?.icon3}",
-              ),
-              ForecastContainerWidget(
-                data: data,
-                date: "${data?.dateFormated3}",
-                weather: "${data?.temp4?.toStringAsFixed(0)}°C",
-                humidity: "${data?.humidity4?.toStringAsFixed(0)}%",
-                paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
-                avghumidity: data?.humidity4,
-                icon: "${data?.icon4}",
-              ),
-              ForecastContainerWidget(
-                data: data,
-                date: "${data?.dateFormated4}",
-                weather: "${data?.temp5?.toStringAsFixed(0)}°C",
-                humidity: "${data?.humidity5?.toStringAsFixed(0)}%",
-                paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
-                avghumidity: data?.humidity5,
-                icon: "${data?.icon2}",
-              ),
-            ],
-          ),
+      padding: const EdgeInsets.only(top: 150),
+      child: Container(
+        decoration: BoxDecoration(
+            color: const Color(0xB9EBEBEB),
+            borderRadius: BorderRadius.circular(30)),
+        width: Platform.isIOS ? widthIos : widthAndr,
+        height: Platform.isIOS ? heightIos : heightAndr,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            ForecastContainerWidget(
+              data: data,
+              date: "${data?.dateFormated}",
+              weather: "${data?.temp1?.toStringAsFixed(0)}°C",
+              humidity: "${data?.humidity1?.toStringAsFixed(0)}%",
+              paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
+              avghumidity: data?.humidity1,
+              icon: "${data?.icon1}",
+            ),
+            ForecastContainerWidget(
+              data: data,
+              date: "${data?.dateFormated1}",
+              weather: "${data?.temp2?.toStringAsFixed(0)}°C",
+              humidity: "${data?.humidity2?.toStringAsFixed(0)}%",
+              paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
+              avghumidity: data?.humidity2,
+              icon: "${data?.icon2}",
+            ),
+            ForecastContainerWidget(
+              data: data,
+              date: "${data?.dateFormated2}",
+              weather: "${data?.temp3?.toStringAsFixed(0)}°C",
+              humidity: "${data?.humidity3?.toStringAsFixed(0)}%",
+              paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
+              avghumidity: data?.humidity3,
+              icon: "${data?.icon3}",
+            ),
+            ForecastContainerWidget(
+              data: data,
+              date: "${data?.dateFormated3}",
+              weather: "${data?.temp4?.toStringAsFixed(0)}°C",
+              humidity: "${data?.humidity4?.toStringAsFixed(0)}%",
+              paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
+              avghumidity: data?.humidity4,
+              icon: "${data?.icon4}",
+            ),
+            ForecastContainerWidget(
+              data: data,
+              date: "${data?.dateFormated4}",
+              weather: "${data?.temp5?.toStringAsFixed(0)}°C",
+              humidity: "${data?.humidity5?.toStringAsFixed(0)}%",
+              paddingLeft: Platform.isIOS ? paddingIos : paddingAndr,
+              avghumidity: data?.humidity5,
+              icon: "${data?.icon2}",
+            ),
+          ],
         ),
       ),
     );

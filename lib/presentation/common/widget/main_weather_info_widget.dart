@@ -24,51 +24,56 @@ class MainWeatherInfoWidget extends StatelessWidget {
       create: (context) => Weather(),
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
-        child: ContainerWidget(
-          height: 210,
-          width: Platform.isIOS ? widthIos : widthAndr,
-          paddingIn: 0,
-          widgetDecor: BoxDecoration(
-              color: AppColors.lightBlue,
-              borderRadius: BorderRadius.circular(30)),
-          widget: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CachedNetworkImage(
-                  imageUrl:
-                      "https://openweathermap.org/img/wn/${data?.icon}@4x.png"),
-              Padding(
-                padding: const EdgeInsets.only(top: 25, right: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          bottom: Platform.isIOS ? paddingIos : paddingAndr),
-                      child: WeatherInfo(
-                        text: Platform.isIOS
-                            ? '${data?.temp?.toStringAsFixed(0)}°C'
-                            : '${data?.temp?.toStringAsFixed(1)}°C',
-                        fontSize: Platform.isIOS ? 54 : 62,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ), // gradus text
-                    WeatherInfo(
-                      text:
-                          "Feels Like:  ${data?.feelsLike?.toStringAsFixed(0)}°C",
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+        child: Column(
+          children: [
+            ContainerWidget(
+              height: 210,
+              width: Platform.isIOS ? widthIos : widthAndr,
+              paddingIn: 0,
+              widgetDecor: BoxDecoration(
+                  color: AppColors.lightBlue,
+                  borderRadius: BorderRadius.circular(30)),
+              widget: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CachedNetworkImage(
+                      imageUrl:
+                          "https://openweathermap.org/img/wn/${data?.icon}@4x.png"),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25, right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              bottom:
+                                  Platform.isIOS ? paddingIos : paddingAndr),
+                          child: WeatherInfo(
+                            text: Platform.isIOS
+                                ? '${data?.temp?.toStringAsFixed(0)}°C'
+                                : '${data?.temp?.toStringAsFixed(1)}°C',
+                            fontSize: Platform.isIOS ? 54 : 62,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ), // gradus text
+                        WeatherInfo(
+                          text:
+                              "Feels Like:  ${data?.feelsLike?.toStringAsFixed(0)}°C",
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        WeatherInfo(
+                            text:
+                                "${data?.description?[0].toUpperCase()}${data?.description?.substring(1)}",
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600)
+                      ],
                     ),
-                    WeatherInfo(
-                        text:
-                            "${data?.description?[0].toUpperCase()}${data?.description?.substring(1)}",
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600)
-                  ],
-                ),
-              )
-            ],
-          ),
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

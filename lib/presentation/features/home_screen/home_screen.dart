@@ -36,15 +36,20 @@ class HomeScreen extends StatelessWidget {
     return Column(
       children: [
         CaptionsWidget(
-          title: "${data!.cityName}",
+          title: "${data?.cityName}",
         ),
         const DaysList(),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: MainWeatherInfoWidget(data: data),
-        ),
-        MoreInfoWidget(
-          data: data,
+        Stack(
+          alignment: const Alignment(0, 10),
+          children: [
+            MoreInfoWidget(
+              data: data,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 0),
+              child: MainWeatherInfoWidget(data: data),
+            ),
+          ],
         ),
         ForecastListWidget(
           data: data,
