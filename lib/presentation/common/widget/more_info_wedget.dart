@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/API/weather_model.dart';
+import 'package:weather_app/presentation/common/app_colors.dart';
 import 'package:weather_app/presentation/common/icons.dart';
 import 'package:weather_app/presentation/common/widget/container_card_widget.dart';
 
@@ -18,15 +19,18 @@ class MoreInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContainerWidget(
         width: Platform.isIOS ? widthIos : widthAndr,
-        height: 150,
+        height: 190,
         paddingIn: 15,
-        widgetDecor: BoxDecoration(
-            color: const Color(0xB9EBEBEB),
-            borderRadius: BorderRadius.circular(30)),
+        widgetDecor: const BoxDecoration(
+            color: Color(0xB9EBEBEB),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30),
+            )),
         widget: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 15, top: 15),
+              padding: const EdgeInsets.only(bottom: 15, top: 50),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -34,7 +38,7 @@ class MoreInfoWidget extends StatelessWidget {
                       icon: const Icon(
                         Icons.arrow_upward_outlined,
                         color: Colors.red,
-                      ), //TODO: Change google icon to const image from file
+                      ),
                       title: "Max Temp",
                       details: "${data?.maxTemp?.toStringAsFixed(0)}°C"),
                   DetailsItem(
@@ -68,11 +72,32 @@ class MoreInfoWidget extends StatelessWidget {
                 DetailsItem(
                     icon: AppIcons.cloud,
                     title: "Cloud",
-                    details: "${data?.cloud} %           ")
+                    details: "${data?.cloud} %          "),
               ],
-            )
+            ),
+            const DraggableBtn()
           ],
         ));
+  }
+}
+
+class DraggableBtn extends StatelessWidget {
+  const DraggableBtn({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 9),
+      child: Container(
+        width: 40,
+        height: 6,
+        decoration: BoxDecoration(
+            color: AppColors.lightBlue,
+            borderRadius: BorderRadius.circular(30)),
+      ),
+    );
   }
 }
 
